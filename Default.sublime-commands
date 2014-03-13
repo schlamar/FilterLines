@@ -1,6 +1,3 @@
 [
-    { "caption": "Filter Lines: Filter With Regex", "command": "filter_to_lines", "args": { "search_type": "regex" } },
-    { "caption": "Filter Lines: Filter With String", "command": "filter_to_lines", "args": { "search_type": "string" } },
-    { "caption": "Filter Lines: Fold With Regex", "command": "fold_to_lines", "args": { "search_type": "regex" } },
-    { "caption": "Filter Lines: Fold With String", "command": "fold_to_lines", "args": { "search_type": "string" } }
+    { "caption": "Filter Lines: Filter With Regex", "command": "filter_lines"},
 ]

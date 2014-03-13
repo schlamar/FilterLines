@@ -8,19 +8,9 @@
                 "children":
                 [
                     { "caption": "-" },
-                    { "caption": "Filter With Regex", "command": "filter_to_lines", "args": { "search_type": "regex" } },
-                    { "caption": "Filter With String", "command": "filter_to_lines", "args": { "search_type": "string" } }
+                    { "caption": "Filter With Regex", "command": "filter_lines"},
                 ]
             },
-            {
-                "id": "fold",
-                "children":
-                [
-                    { "caption": "-" },
-                    { "caption": "Fold With Regex", "command": "fold_to_lines", "args": { "search_type": "regex" } },
-                    { "caption": "Fold With String", "command": "fold_to_lines", "args": { "search_type": "string" } }
-                ]
-            }
         ]
     },
 

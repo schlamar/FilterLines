@@ -1,13 +1,6 @@
 {
-	// If true, string searches are case-sensitive
-	"case_sensitive_string_search": false,
-
 	// If true, regular expression matching is case-sensitive
-	"case_sensitive_regex_search": true,
-
-	// If true, filtered results will open in a new buffer. If false,
-	// results will overwrite the current buffer
-	"use_new_buffer_for_filter_results": true,
+	"case_sensitive_search": true,
 
 	// If true, your latest search string or regex will be saved,
 	// and then restored for your next search. If false, the search
