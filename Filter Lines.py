@@ -100,7 +100,7 @@ class FilterMatchingLinesCommand(sublime_plugin.TextCommand):
             'word_wrap', self.view.settings().get('word_wrap'))
 
         region = sublime.Region(0, self.view.size())
-        if separator is None:
+        if not separator:
             lines = (self.view.substr(r)
                      for r in self.view.split_by_newlines(region))
         else:
@@ -109,7 +109,7 @@ class FilterMatchingLinesCommand(sublime_plugin.TextCommand):
         text = ''
         for line in lines:
             if match_line(regex, line, case_sensitive, invert_search):
-                if separator is None:
+                if not separator:
                     line += '\n'
                 text += line
 
