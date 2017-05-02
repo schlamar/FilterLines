@@ -5,6 +5,8 @@ import re
 import sublime
 import sublime_plugin
 
+LOCAL_SETTINGS = 'FilterLinesLocal.sublime-settings'
+
 
 def match_line(regex, text, case_sensitive, invert_search=False):
     flags = 0
@@ -47,7 +49,8 @@ class FilterLinesCommand(sublime_plugin.WindowCommand):
 
         search_text = ''
         if settings.get('preserve_search', True):
-            search_text = settings.get('latest_search', '')
+            local_settings = sublime.load_settings(LOCAL_SETTINGS)
+            search_text = local_settings.get('latest_search', '')
 
         invert_search = settings.get('invert_search', False)
 
@@ -61,8 +64,9 @@ class FilterLinesCommand(sublime_plugin.WindowCommand):
         if self.window.active_view():
             settings = sublime.load_settings('Filter Lines.sublime-settings')
             if settings.get('preserve_search', True):
-                settings.set('latest_search', regex)
-                sublime.save_settings('Filter Lines.sublime-settings')
+                local_settings = sublime.load_settings(LOCAL_SETTINGS)
+                local_settings.set('latest_search', regex)
+                sublime.save_settings(LOCAL_SETTINGS)
 
             if settings.get('custom_separator', False):
                 f = functools.partial(self.on_separator, regex)
@@ -120,9 +124,10 @@ class FilterMatchingLinesCommand(sublime_plugin.TextCommand):
         if results_view.size() > 0:
             results_view.set_syntax_file(self.view.settings().get('syntax'))
         else:
-            message = ('Filtering lines for "%s" %s\n\n0 matches\n' % (regex,
-                       '(case-sensitive)' if case_sensitive else
-                       '(not case-sensitive)'))
+            message = ('Filtering lines for "%s" %s\n\n0 matches\n'
+                       % (regex,
+                          '(case-sensitive)' if case_sensitive else
+                          '(not case-sensitive)'))
             results_view.run_command(
                 'append', {'characters': message, 'force': True,
                            'scroll_to_end': False})
